@@ -3,19 +3,88 @@
     .border {
       background: transparent;
       border: 5px solid transparent;
-      border-image: url(../assets/border-box-light.png) 5 5 5 5 repeat;
+      border-image: url(../assets/box-square-black.svg) 5 5 5 5 stretch;
+    }
+
+    .border-round {
+      background: #20c997;
+      border-radius: 100%;
+      background-size: 100% 100%;
+      height: 62px;
+      width: 62px;
+      border: none;
+
+      position: relative;
+      margin: 1px;
+    }
+    .border-round::after {
+      -webkit-mask: url(../assets/circle-64x64.svg);
+      -webkit-mask-size: cover;
+      -webkit-mask-repeat: no-repeat;
+
+      content: "";
+
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      background: inherit;
     }
     .dark-border {
       color: white;
       background: transparent;
       border: 5px solid transparent;
-      border-image: url(../assets/border-box-dark.png) 5 5 5 5 repeat;
+      border-image: url(../assets/box-square-white.svg) 5 5 5 5 repeat;
+    }
+    .primary {
+      position: relative;
+      color: white;
+      background: #20c997;
+      border: none;
+      min-width: 82px;
+    }
+    .primary::after {
+      -webkit-mask: url(../assets/box-square-black.svg);
+      -webkit-mask-size: cover;
+      -webkit-mask-repeat: no-repeat;
+      background: inherit;
+      content: "";
+
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      bottom: 5px;
+      left: -1px;
+    }
+
+    .primary::before {
+      -webkit-mask: url(../assets/box-square-black.svg);
+      -webkit-mask-size: cover;
+      -webkit-mask-repeat: no-repeat;
+      content: "";
+      background: inherit;
+
+      position: absolute;
+      transform: rotate(180deg);
+      top: 5;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
     }
   </style>
-  <div style="background: #dadada; padding: 1rem">
-    <button class="border">Hi there</button>
-  </div>
-  <div style="background: black; padding: 1rem">
-    <button class="dark-border">Hi there</button>
-  </div>
+  <body>
+    <div style="background: #dadada; padding: 1rem">
+      <button class="border">Hi there</button>
+      <button class="border-round">Hi</button>
+    </div>
+    <div style="background: black; padding: 1rem">
+      <button class="dark-border">Hi there</button>
+    </div>
+
+    <div style="background: #dadada; padding: 1rem">
+      <button class="primary" style="margin-bottom: 1rem">Hi there</button>
+      <button class="primary" style="width: 100%">Hi there</button>
+    </div>
+  </body>
 </html>
